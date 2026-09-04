@@ -1,0 +1,47 @@
+services:
+  nginx:
+    image: nginx:1.16
+    container_name: nginx
+    environment:
+      - TZ=Asia/Shanghai
+    restart: always
+    volumes:
+      - ./nginx/conf:/etc/nginx/conf.d:ro
+      - ./nginx/log:/var/log/nginx
+    ports:
+      - "80:80"
+
+  gitea:
+    image: gitea/gitea:1.27.3
+    container_name: gitea
+    environment:
+      - USER_UID=1000
+      - USER_GID=1000
+      - GITEA__database__DB_TYPE=mysql
+      - GITEA__database__HOST=mysql:3306
+      - GITEA__database__NAME=gitea
+      - GITEA__database__USER=gitea
+      - GITEA__database__PASSWD=gitea
+      - TZ=Asia/Shanghai
+    restart: always
+    volumes:
+      - ./gitea/data:/data
+    ports:
+      - "3000:3000"
+      - "222:22"
+    depends_on:
+      - mysql
+
+  mysql:
+    image: mysql:8.4.3
+    container_name: mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=gitea
+      - MYSQL_USER=gitea
+      - MYSQL_PASSWORD=gitea
+      - MYSQL_DATABASE=gitea
+      - TZ=Asia/Shanghai
+    restart: always
+    volumes:
+      - ./mysql/data:/var/lib/mysql
+      - ./mysql/log:/var/log/mysql
