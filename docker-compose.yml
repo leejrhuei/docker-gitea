@@ -6,8 +6,8 @@ services:
       - TZ=Asia/Shanghai
     restart: always
     volumes:
-      - ./nginx/conf.d:/etc/nginx/conf.d:ro
-      - ./nginx/log:/var/log/nginx
+      - ./conf/nginx/conf.d:/etc/nginx/conf.d:ro
+      - ./log/nginx:/var/log/nginx
     ports:
       - "80:80"
 
@@ -25,7 +25,7 @@ services:
       - TZ=Asia/Shanghai
     restart: always
     volumes:
-      - ./gitea/data:/data
+      - ./data/gitea:/data
     ports:
       - "3000:3000"
       - "222:22"
@@ -43,5 +43,5 @@ services:
       - TZ=Asia/Shanghai
     restart: always
     volumes:
-      - ./mysql/data:/var/lib/mysql
-      - ./mysql/log:/var/log/mysql
+      - ./data/mysql:/var/lib/mysql
+      - ./log/mysql:/var/log/mysql
