@@ -25,9 +25,9 @@ ROOT_URL = http://gitea.xxx.com
 RSA = 2048
 ```
 
-### 常见问题
+### QA
 
-1. CentOS 7.x安装 Docker 社区版本
+1. CentOS 7.x安装 Docker 社区版本？
 
 ```shell
 #添加Docker软件包源
@@ -42,7 +42,7 @@ sudo systemctl start docker
 sudo systemctl enable docker
 ```
 
-2. /etc/docker/daemon.json配置镜像源
+2. /etc/docker/daemon.json配置镜像源？
 
 ```json
 {
