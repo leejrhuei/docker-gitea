@@ -24,7 +24,7 @@ ROOT_URL = http://gitea.xxx.com
 RSA = 2048
 ```
 
-### QA
+### 常见问题
 
 1. /etc/docker/daemon.json配置镜像加速器？
 
