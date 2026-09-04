@@ -1,6 +1,6 @@
 ### 项目结构
 
-```
+```text
 docker-gitea
 ├─ conf                     配置目录
 │   ├─ nginx                Nginx配置目录
