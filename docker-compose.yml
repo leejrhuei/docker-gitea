@@ -6,7 +6,7 @@ services:
       - TZ=Asia/Shanghai
     restart: always
     volumes:
-      - ./nginx/conf:/etc/nginx/conf.d:ro
+      - ./nginx/conf.d:/etc/nginx/conf.d:ro
       - ./nginx/log:/var/log/nginx
     ports:
       - "80:80"
