@@ -26,7 +26,22 @@ RSA = 2048
 
 ### 常见问题
 
-1. /etc/docker/daemon.json配置镜像加速器？
+1. CentOS 7.x安装 Docker 社区版本
+
+```shell
+#添加Docker软件包源
+sudo wget -O /etc/yum.repos.d/docker-ce.repo http://mirrors.cloud.aliyuncs.com/docker-ce/linux/centos/docker-ce.repo
+sudo sed -i 's|https://mirrors.aliyun.com|http://mirrors.cloud.aliyuncs.com|g' /etc/yum.repos.d/docker-ce.repo
+#安装Docker社区版本，容器运行时containerd.io，以及Docker构建和Compose插件
+sudo yum -y install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+
+#启动Docker
+sudo systemctl start docker
+#设置Docker守护进程在系统启动时自动启动
+sudo systemctl enable docker
+```
+
+2. /etc/docker/daemon.json配置镜像源
 
 ```json
 {
