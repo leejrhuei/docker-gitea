@@ -22,6 +22,7 @@ services:
       - GITEA__database__NAME=gitea
       - GITEA__database__USER=gitea
       - GITEA__database__PASSWD=gitea
+      - GITEA__security__ALLOWED_HOST_LIST=external,pr-agent
       - TZ=Asia/Shanghai
     restart: always
     volumes:
@@ -45,3 +46,19 @@ services:
     volumes:
       - ./data/mysql:/var/lib/mysql
       - ./log/mysql:/var/log/mysql
+
+  pr-agent:
+    image: pragent/pr-agent:0.49.0-gitea_app
+    container_name: pr-agent
+    environment:
+      - PORT=3000
+      - GUNICORN_WORKERS=2
+      - TZ=Asia/Shanghai
+    env_file:
+      - ./conf/pr-agent/.env
+    restart: always
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"

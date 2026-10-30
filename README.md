@@ -5,6 +5,7 @@ docker-gitea
 ├─ conf                     配置目录
 │   ├─ nginx                Nginx配置目录
 │       ├─ conf.d           Nginx项目配置目录
+│   ├─ pr-agent             PR-Agent配置目录
 ├─ data                     数据目录
 ├─ log                      日志目录
 ├─ docker-compose.yml       容器配置文件
@@ -23,6 +24,18 @@ ROOT_URL = http://gitea.xxx.com
 
 [ssh.minimum_key_sizes]
 RSA = 2048
+```
+
+2. gitea ai review
+
+```text
+新建账号：登录root账号，右上角头像->管理后台->身份及认证->帐户管理->创建新帐户(如ai-review)
+账号令牌：登录ai-review账号，右上角头像->设置->应用->令牌(read:user、read:repository、write:issue)
+仓库授权：仓库->设置->协作者，添加ai-review账号(可写权限)
+钩子设置：仓库->设置->Web钩子
+        目标 URL：http://pr-agent:3000/api/v1/gitea_webhooks
+        密钥：自定义
+        触发条件：自定义事件(合并请求、合并请求已评论)
 ```
 
 ### QA
