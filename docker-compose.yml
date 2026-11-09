@@ -1,7 +1,7 @@
 services:
   nginx:
     image: nginx:1.16
-    container_name: nginx
+    container_name: gitea-nginx
     environment:
       - TZ=Asia/Shanghai
     restart: always
@@ -35,7 +35,7 @@ services:
 
   mysql:
     image: mysql:8.4.11
-    container_name: mysql
+    container_name: gitea-mysql
     environment:
       - MYSQL_ROOT_PASSWORD=gitea
       - MYSQL_USER=gitea
@@ -49,7 +49,7 @@ services:
 
   pr-agent:
     image: pragent/pr-agent:0.49.0-gitea_app
-    container_name: pr-agent
+    container_name: gitea-pr-agent
     environment:
       - PORT=3000
       - GUNICORN_WORKERS=2
